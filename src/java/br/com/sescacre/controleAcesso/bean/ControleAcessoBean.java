@@ -93,7 +93,7 @@ public class ControleAcessoBean implements Serializable {
         } else {
             try {
                 Categorias categoria = new CategoriasDao().pesquisaPorId(cliente.getCategoria());
-                Unidades unidade = new UnidadesDAO().pesquisaPorId(3);
+                Unidades unidade = new UnidadesDAO().pesquisaPorId(9);
                 acesso = "Liberado";
                 registro.setCateira(cliente.getCarteira());
                 registro.setCategoria(categoria);

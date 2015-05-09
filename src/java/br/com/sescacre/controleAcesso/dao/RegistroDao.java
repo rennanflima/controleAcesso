@@ -22,11 +22,13 @@ public class RegistroDao {
     
     public void salvar(Registros r) throws Exception {
         Session s = HibernateUtil.getSession();
+        Transaction t = null; 
         try {
-            Transaction t = s.beginTransaction();
+            t = s.beginTransaction();
             s.save(r);
             t.commit();
         } catch (Exception ex) {
+            t.rollback();
             throw new SQLIntegrityConstraintViolationException();
         } finally {
             s.close();
@@ -35,11 +37,13 @@ public class RegistroDao {
 
     public void alterar(Registros r) throws Exception {
         Session s = HibernateUtil.getSession();
+        Transaction t = null;
         try {
-            Transaction t = s.beginTransaction();
+            t = s.beginTransaction();
             s.update(r);
             t.commit();
         } catch (Exception e) {
+            t.rollback();
             throw new SQLIntegrityConstraintViolationException();
         } finally {
             s.close();
